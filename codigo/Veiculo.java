@@ -1,10 +1,17 @@
 package app;
 
 public class Veiculo {
-	protected double capacidade;
-	protected double km_medio;
-	protected double tanque;
-	protected double valor_venda;
+	private double capacidade;
+	private double km_medio;
+	private double tanque;
+	private double valor_venda;
+
+	Veiculo(double capacidade, double km_medio, double tanque, double valor_venda){
+		this.capacidade = capacidade;
+		this.km_medio = km_medio;
+		this.tanque = tanque;
+		this.valor_venda = valor_venda;
+	}
 
 	public double autonomia_diaria() {
 		return 0;
@@ -12,6 +19,7 @@ public class Veiculo {
 	
 	public void rota_valida() {
 	}
+	
 	public void seguro(){
 
 	}
