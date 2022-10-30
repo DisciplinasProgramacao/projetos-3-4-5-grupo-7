@@ -1,4 +1,4 @@
-package app;
+package codigo;
 
 public class Van extends Veiculo{
 	public double autonomia_diaria() {

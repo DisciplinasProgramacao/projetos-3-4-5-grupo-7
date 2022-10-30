@@ -1,4 +1,4 @@
-package app;
+package codigo;
 
 public interface Preco {
 	

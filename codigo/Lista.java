@@ -1,4 +1,4 @@
-package app;
+package codigo;
 
 public class Lista<T> {
 	public Lista<T> lista;

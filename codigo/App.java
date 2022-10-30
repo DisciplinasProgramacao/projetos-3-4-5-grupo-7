@@ -1,8 +1,8 @@
-package app;
-
+package codigo;
 public class App {
 	public static void main(String[] args){
 		
-		System.out.print("o");
+	
 	}
 }
+

@@ -1,4 +1,4 @@
-package app;
+package codigo;
 
 public class Rota {
 	protected Date data;
