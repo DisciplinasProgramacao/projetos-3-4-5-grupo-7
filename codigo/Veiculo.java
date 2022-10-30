@@ -1,9 +1,9 @@
 package codigo;
 public class Veiculo {
 	protected double capacidade;
-	private double km_medio;
-	private double tanque;
-	private double valor_venda;
+	protected double km_medio;
+	protected double tanque;
+	protected double valor_venda;
 
 	Veiculo(double km_medio, double tanque, double valor_venda) {
 		this.km_medio = km_medio;
@@ -35,7 +35,7 @@ public class Veiculo {
 	public void rota_valida() {
 	}
 
-	public void seguro() {
+	private void seguro() {
 
 	}
 
