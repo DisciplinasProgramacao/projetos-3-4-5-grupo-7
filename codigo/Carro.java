@@ -1,12 +1,9 @@
-package app;
+package codigo;
 
-public class Carro extends Veiculo{
-	static double capacidade = 50;
-	Carro(double km_medio, double tanque, double valor_venda){
-		super(capacidade, km_medio, tanque, valor_venda);
+public class Carro extends Veiculo {
+	Carro(double km_medio, double tanque, double valor_venda) {
+		super(km_medio, tanque, valor_venda);
+		capacidade = 50; 
 	}
-	
-	public double autonomia_diaria() {
-		return 0;
-	}
+
 }
