@@ -20,7 +20,7 @@ public class CsvReader{
     }
 
     public List<Integer> returnArrayNumbers(){
-        String arquivoCSV = "codigo/Pasta1.csv";
+        String arquivoCSV = this.caminhoRelativoArquivoCsv;
 		BufferedReader br = null;
 		String linha = "";
 		String csvDivisor = ";";
