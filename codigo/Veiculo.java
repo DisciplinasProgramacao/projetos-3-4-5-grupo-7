@@ -10,7 +10,6 @@ public abstract class Veiculo {
 	protected double capacidade;
 	protected double gastos_com_combustivel;
 	protected Combustivel tipoCombustivel;
-	private double custo_veiculo;
 	private List rota;
 	protected double preco_ipva;
 	protected double preco_seguro;
@@ -39,7 +38,7 @@ public abstract class Veiculo {
 		else
 			this.tanque = capacidade;
 	}
-
+	
 	public double autonomia() {
 		double autonomia = this.tanque * km_medio;
 		return autonomia;
@@ -47,10 +46,6 @@ public abstract class Veiculo {
 
 	public boolean rota_valida(double rota) {
 		if(rota <= km_medio * capacidade){
-			if(rota < km_medio * autonomia){
-				Veiculo veiculo = new Veiculo(this.km_medio,this.tanque,this.valor_venda, this.preco_ipva, this.preco_seguro);
-				veiculo.adicionar_combustivel();
-			}
 			return true;
 		}
 		return false;
@@ -68,6 +63,6 @@ public abstract class Veiculo {
 		return preco_seguro;
 	}
 	
-	public abstract void adicionar_combustivel(); 
+	public abstract void adicionar_combustivel(Combustivel tipoCombustivel); 
 	public abstract void contar_quant_rotas_por_veiculo(); 
 }
