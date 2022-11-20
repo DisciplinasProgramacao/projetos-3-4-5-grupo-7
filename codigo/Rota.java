@@ -1,15 +1,29 @@
 package codigo;
 
+import java.util.Date;
+
 public class Rota {
 	protected Date data;
 	protected double distancia_total;
 	
-	public Rota(Data data, double distancia_total) {
+	public Rota(Date data, double distancia_total) {
 		this.data =  data;
-		this.distancia_total;
+		this.distancia_total = distancia_total;
 	}
 	
-	public void RotaFinal() {
-		
+	public Date getData() {
+		return this.data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public double getDistancia_total() {
+		return this.distancia_total;
+	}
+
+	public void setDistancia_total(double distancia_total) {
+		this.distancia_total = distancia_total;
 	}
 }
