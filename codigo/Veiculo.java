@@ -3,23 +3,26 @@ package codigo;
 import java.util.List;
 
 public abstract class Veiculo {
-	protected double capacidade;
 	protected double autonomia;
 	protected double km_medio;
 	protected double tanque;
 	protected double valor_venda;
+	protected double capacidade;
+	protected double gastos_com_combustivel;
+	protected Combustivel tipoCombustivel;
 	private double custo_veiculo;
 	private List rota;
-	
-	Veiculo(double km_medio, double tanque, double valor_venda) {
+	protected double preco_ipva;
+	protected double preco_seguro;
+
+	Veiculo(double km_medio, double tanque, double valor_venda, double preco_ipva, double preco_seguro) {
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
+		this.preco_ipva = preco_ipva;
+		this.preco_seguro = preco_seguro;
+		
 		verificar_quantidade_de_litros_inseridos_no_tanque(capacidade, tanque);
 	}
-
-	static double preco_ipva = 0;
-	static double preco_seguro = 0;
-	static Veiculo veiculo = new Veiculo(this.km_medio,this.tanque,this.valor_venda);
 
 	/**
 	 * Verificar se a quantidade de combustivel inserida no tanque respeita a
@@ -45,8 +48,8 @@ public abstract class Veiculo {
 	public boolean rota_valida(double rota) {
 		if(rota <= km_medio * capacidade){
 			if(rota < km_medio * autonomia){
-				 
-				 veiculo.adicionar_combustivel();
+				Veiculo veiculo = new Veiculo(this.km_medio,this.tanque,this.valor_venda, this.preco_ipva, this.preco_seguro);
+				veiculo.adicionar_combustivel();
 			}
 			return true;
 		}
@@ -54,7 +57,7 @@ public abstract class Veiculo {
 	}
 	
 	public double somar_custos_veiculo(){
-		return preco_ipva + preco_seguro + valor_venda;
+		return preco_ipva + preco_seguro + this.gastos_com_combustivel;
 	}
 
 	private double IPVA() {
