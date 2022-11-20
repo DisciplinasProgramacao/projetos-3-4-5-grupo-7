@@ -3,11 +3,13 @@ package codigo;
 import java.util.List;
 
 public abstract class Veiculo {
-	protected double capacidade;
 	protected double autonomia;
 	protected double km_medio;
 	protected double tanque;
 	protected double valor_venda;
+	protected double capacidade;
+	protected double gastos_com_combustivel;
+	protected Combustivel tipoCombustivel;
 	private double custo_veiculo;
 	private List rota;
 	
@@ -54,7 +56,7 @@ public abstract class Veiculo {
 	}
 	
 	public double somar_custos_veiculo(){
-		return preco_ipva + preco_seguro + valor_venda;
+		return preco_ipva + preco_seguro + this.gastos_com_combustivel;
 	}
 
 	private double IPVA() {
