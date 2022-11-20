@@ -19,8 +19,7 @@ public class Caminhao extends Veiculo {
 	@Override
 	public void adicionar_combustivel() {
 	}
-
-	@Override
-	public void contar_quant_rotas_por_veiculo() {
+	public int vistoria() {
+		return 0;
 	}
 }
