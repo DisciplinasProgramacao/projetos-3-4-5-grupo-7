@@ -1,9 +1,11 @@
 package codigo;
 
 public class Van extends Veiculo{
-	Van(double km_medio, double tanque, double valor_venda, double preco_ipva, double preco_seguro) {
-		super(km_medio, tanque, valor_venda, preco_ipva, preco_seguro);
-	
+	private static int vanID = 0;
+	Van(double km_medio, double tanque, double valor_venda) {
+		super(km_medio, tanque, valor_venda);
+		this.id = vanID;
+		vanID++;
 	}
 	public void contar_quant_rotas_por_veiculo(){
 

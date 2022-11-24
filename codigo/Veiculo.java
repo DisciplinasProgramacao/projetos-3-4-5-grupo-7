@@ -1,5 +1,6 @@
 package codigo;
 
+import java.util.Date;
 import java.util.List;
 
 public abstract class Veiculo implements Preco{
@@ -13,8 +14,9 @@ public abstract class Veiculo implements Preco{
 	protected List<Rota> rota;
 	protected double preco_ipva;
 	protected double preco_seguro;
+	protected int id;
 
-	Veiculo(double km_medio, double tanque, double valor_venda, double preco_ipva, double preco_seguro) {
+	Veiculo(double km_medio, double capacidade, double valor_venda) {
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
 		this.preco_ipva = preco_ipva;
@@ -40,6 +42,13 @@ public abstract class Veiculo implements Preco{
 	public double autonomia() {
 		double autonomia = this.tanque * km_medio;
 		return autonomia;
+	}
+
+	public void adicionarNovaRota(double distancia_total){
+		Date dataDoMomento = new Date();
+		Rota rotaParaSerAdicionada = new Rota(dataDoMomento, distancia_total);
+		this.rota.add(rotaParaSerAdicionada);
+		System.out.print("Rota adicionada!");
 	}
 
 	public boolean rota_valida(double rota) {
@@ -69,11 +78,34 @@ public abstract class Veiculo implements Preco{
 		return this.km_medio;
 	}
 
+	public double getValor_venda() {
+        return this.valor_venda;
+    } 
+
+	/**
+     * Classe de relatório do pedido. (a ser melhorado)
+     * @return String com detalhamento do pedido. 
+     */
+    public String relatorio(){
+        StringBuilder relat = new StringBuilder("Veiculo\n" + getClass().getName());
+        relat.append("=====================\n");
+        relat.append("Id veículo:"+ this.id);
+		relat.append("=====================\n");
+		relat.append("Autonomia:"+this.autonomia);
+		relat.append("=====================\n");
+		relat.append("Km médio:"+this.km_medio);
+        relat.append("=====================\n");
+        return relat.toString();
+        
+    }
+
+	@Override 
+    public String toString(){
+        return this.relatorio();
+    }
+
 	public abstract double custos ();
 	public abstract void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception; 
 	public abstract void contar_quant_rotas_por_veiculo();
 
-    public double getValor_venda() {
-        return this.valor_venda;
-    } 
 }

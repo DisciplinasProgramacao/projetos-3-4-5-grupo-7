@@ -19,20 +19,29 @@ public class Frota {
     public String addVeiculos(String arquivo){
         CsvReader newVeiculos = new CsvReader(arquivo);
         for (String veiculo : newVeiculos.returnArrayNumbers()) {
+            System.out.print(veiculo);
             String[] veiculosInfo = veiculo.split(",");
             switch (veiculosInfo[0]) {
                 case "Caminhao":
-                    Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), Double.parseDouble(veiculosInfo[4]), Double.parseDouble(veiculosInfo[4]));
+                    Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
                     listaVeiculos.add(caminhaoAux);
+                    System.out.print(caminhaoAux);
+                    break;
                 case "Carro":
-                    Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), 0, 0);
+                    Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
                     listaVeiculos.add(carroAux);
+                    System.out.print(carroAux);
+                    break;
                 case "Van":
-                    Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), 0, 0);
+                    Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
                     listaVeiculos.add(vanAux);
+                    System.out.print(vanAux);
+                    break;
                 case "Furgao":
-                    Furgao forgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), 0, 0);
+                    Furgao forgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
                     listaVeiculos.add(forgaoAux);
+                    System.out.print(forgaoAux);
+                    break;
             }
         }
         return "nao possui veiculos";
