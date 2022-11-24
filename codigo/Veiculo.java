@@ -2,7 +2,7 @@ package codigo;
 
 import java.util.List;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Preco{
 	protected double autonomia;
 	protected double km_medio;
 	protected double tanque;
@@ -60,7 +60,20 @@ public abstract class Veiculo {
 	public double seguro() {
 		return preco_seguro;
 	}
+
+	public List<Rota> getRota() {
+		return this.rota;
+	}
 	
+	public double getKm_medio() {
+		return this.km_medio;
+	}
+
+	public abstract double custos ();
 	public abstract void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception; 
-	public abstract void contar_quant_rotas_por_veiculo(); 
+	public abstract void contar_quant_rotas_por_veiculo();
+
+    public double getValor_venda() {
+        return this.valor_venda;
+    } 
 }

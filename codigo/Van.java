@@ -17,4 +17,9 @@ public class Van extends Veiculo{
 		System.out.println("O tanque está cheio");
 		
 	}
+	@Override
+	public double custos() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

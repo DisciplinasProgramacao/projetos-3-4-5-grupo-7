@@ -16,4 +16,9 @@ public class Carro extends Veiculo {
 		verificar_quantidade_de_litros_inseridos_no_tanque(litros, this.capacidade);
 		System.out.println("O tanque está cheio");
 	}
+	@Override
+	public double custos() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
