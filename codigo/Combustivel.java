@@ -7,7 +7,7 @@ package codigo;
  * e o segundo, o preço daquele combustivel por litro.
  */
 public enum Combustivel {
-  Gasolina(12.0, 4.80), Etanol(8.0, 3.65), Diesel(3.5, 6, 65);
+  Gasolina(12.0, 4.80), Etanol(8.0, 3.65), Diesel(3.5, 6.65);
 
   private double quilometragemPorLitro;
   private double precoDoLitro;

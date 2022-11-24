@@ -14,7 +14,7 @@ public class App {
 			System.out.println("1 - Carregar um conjunto de veículos de um arquivo");
 			System.out.println("2 - Salvar um conjunto de veículos de um arquivo");
 			System.out.println("3 - Incluir Novo veículo");
-			System.out.println("3 - Localizar ");
+			System.out.println("3 - Localizar veiculo da Frota");
 			System.out.println("0 - Sair");
 			System.out.println("Digite opção");
 			opcao = Integer.parseInt(teclado.nextLine());

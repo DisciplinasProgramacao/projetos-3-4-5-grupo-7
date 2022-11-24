@@ -10,7 +10,7 @@ public abstract class Veiculo {
 	protected double capacidade;
 	protected double gastos_com_combustivel;
 	protected Combustivel tipoCombustivel;
-	private List rota;
+	protected List<Rota> rota;
 	protected double preco_ipva;
 	protected double preco_seguro;
 
@@ -19,8 +19,6 @@ public abstract class Veiculo {
 		this.valor_venda = valor_venda;
 		this.preco_ipva = preco_ipva;
 		this.preco_seguro = preco_seguro;
-		
-		verificar_quantidade_de_litros_inseridos_no_tanque(capacidade, tanque);
 	}
 
 	/**
@@ -32,7 +30,7 @@ public abstract class Veiculo {
 	 * @param capacidade a capacidade maxima permitida no tanque do veiculo
 	 * @param tanque     a quantidade de combustivel inserida no veiculo
 	 */
-	private void verificar_quantidade_de_litros_inseridos_no_tanque(double capacidade, double tanque) {
+	protected void verificar_quantidade_de_litros_inseridos_no_tanque(double capacidade, double tanque) {
 		if (tanque <= capacidade)
 			this.tanque = tanque;
 		else
@@ -55,14 +53,14 @@ public abstract class Veiculo {
 		return preco_ipva + preco_seguro + this.gastos_com_combustivel;
 	}
 
-	private double IPVA() {
+	public double IPVA() {
 		return preco_ipva;
 	}
 
-	private double seguro() {
+	public double seguro() {
 		return preco_seguro;
 	}
 	
-	public abstract void adicionar_combustivel(Combustivel tipoCombustivel); 
+	public abstract void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception; 
 	public abstract void contar_quant_rotas_por_veiculo(); 
 }

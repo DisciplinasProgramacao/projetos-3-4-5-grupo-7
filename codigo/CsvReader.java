@@ -19,20 +19,20 @@ public class CsvReader{
         this.caminhoRelativoArquivoCsv = caminhoRelativo;
     }
 
-    public List<Integer> returnArrayNumbers(){
+    public List<String> returnArrayNumbers(){
         String arquivoCSV = this.caminhoRelativoArquivoCsv;
 		BufferedReader br = null;
 		String linha = "";
 		String csvDivisor = ";";
 		try {
-            List<Integer> numeros = new ArrayList<Integer>();
+            List<String> numeros = new ArrayList<String>();
 			br = new BufferedReader(new FileReader(arquivoCSV));
 			while ((linha = br.readLine()) != null) {
 	
 				String[] valores = linha.split(csvDivisor);
 	
 				for (String string : valores) {
-                    numeros.add(Integer.parseInt(string));
+                    numeros.add(string);
                 }
 	
 			}

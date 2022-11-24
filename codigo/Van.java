@@ -5,8 +5,16 @@ public class Van extends Veiculo{
 		super(km_medio, tanque, valor_venda, preco_ipva, preco_seguro);
 	
 	}
-	public void adicionar_combustivel(Combustivel combustivel){}
 	public void contar_quant_rotas_por_veiculo(){
 
+	}
+	@Override
+	public void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception {
+		if(tipoCombustivel == Combustivel.Gasolina){
+			throw new Exception("Apenas permitido gasolina");
+		}
+		verificar_quantidade_de_litros_inseridos_no_tanque(litros, this.capacidade);
+		System.out.println("O tanque está cheio");
+		
 	}
 }
