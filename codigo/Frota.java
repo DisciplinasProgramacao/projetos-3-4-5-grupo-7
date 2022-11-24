@@ -18,6 +18,9 @@ public class Frota {
 
     public String addVeiculos(String arquivo){
         CsvReader newVeiculos = new CsvReader(arquivo);
+        if(newVeiculos.returnArrayNumbers().size() == 0){
+            return "nao possui veiculos";
+        }
         for (String veiculo : newVeiculos.returnArrayNumbers()) {
             System.out.print(veiculo);
             String[] veiculosInfo = veiculo.split(",");
@@ -44,15 +47,15 @@ public class Frota {
                     break;
             }
         }
-        return "nao possui veiculos";
+        return "veiculos adicionados";
     }
 
-    public void saveVeiculos(Veiculo veiculo, String arquivo){
+    public void saveVeiculos(String arquivo){
         StringBuilder stringParaArquivoFinal = new StringBuilder();
-        for (int i = 0; i < listaVeiculos.size(); i++) {
-            stringParaArquivoFinal.append(listaVeiculos.getClass()).append(",").append(listaVeiculos.get(i).getKm_medio()).append(",").append(listaVeiculos.get(i).getValor_venda()).append(",").append(listaVeiculos.get(i).preco_seguro).append(";");
+        for (int i = 0; i < this.listaVeiculos.size(); i++) {
+            stringParaArquivoFinal.append(listaVeiculos.get(i).getClass().getSimpleName()).append(listaVeiculos.get(i).getKm_medio()).append(",").append(listaVeiculos.get(i).getValor_venda()).append(",").append(listaVeiculos.get(i).preco_seguro).append(";");
         }
-        
+        System.out.print(stringParaArquivoFinal);
     }
 
     public double[] ordem_decrescente_por_custo(){

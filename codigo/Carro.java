@@ -4,12 +4,14 @@ public class Carro extends Veiculo {
 	private static int carrosID = 0;
 	Carro(double km_medio, double tanque, double valor_venda) {
 		super(km_medio, tanque, valor_venda);
+		precoSeguro(valor_venda);
 		this.id = carrosID;
 		carrosID++;
 	}
-	public void contar_quant_rotas_por_veiculo(){
-
+	private void precoSeguro(double valor_venda){
+		this.preco_seguro = valor_venda * 0.04;
 	}
+
 	@Override
 	public void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception {
 		if(tipoCombustivel == Combustivel.Diesel){

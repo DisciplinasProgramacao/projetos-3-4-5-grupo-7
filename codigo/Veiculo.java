@@ -19,8 +19,12 @@ public abstract class Veiculo implements Preco{
 	Veiculo(double km_medio, double capacidade, double valor_venda) {
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
-		this.preco_ipva = preco_ipva;
-		this.preco_seguro = preco_seguro;
+		this.capacidade = capacidade;
+		precoIpva(valor_venda);
+	}
+
+	private void precoIpva(double valor_venda){
+		this.preco_ipva = valor_venda * 0.04;
 	}
 
 	/**
@@ -80,7 +84,11 @@ public abstract class Veiculo implements Preco{
 
 	public double getValor_venda() {
         return this.valor_venda;
-    } 
+    }
+
+	public int contar_quant_rotas_por_veiculo(){
+		return this.rota.size();
+	}
 
 	/**
      * Classe de relatório do pedido. (a ser melhorado)
@@ -106,6 +114,5 @@ public abstract class Veiculo implements Preco{
 
 	public abstract double custos ();
 	public abstract void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception; 
-	public abstract void contar_quant_rotas_por_veiculo();
 
 }

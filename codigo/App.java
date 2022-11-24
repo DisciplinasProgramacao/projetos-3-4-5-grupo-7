@@ -27,15 +27,14 @@ public class App {
 			switch (opcao) {
 				case 1:
 					System.out.println("Colocar Arquivo");
-					System.out.println(frota.addVeiculos("codigo/Pasta1.csv"));
-					System.out.println("Veiculos adicionados");
+					System.out.println(frota.addVeiculos("codigo/adicionar.csv"));
 					break;
 				case 2:
-					System.out.println("agenda.relatorioCompromissos()");
+					System.out.println("Salvar veículos");
+					frota.saveVeiculos("nome");
 					break;
 				case 3:
-					System.out.println("Colocar dia");
-					nome = teclado.nextLine();
+					System.out.println("Adicionar novo veiculo");
 
 					break;
 				case 0:
