@@ -3,6 +3,7 @@ package codigo;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public abstract class Veiculo implements Preco{
 	protected double autonomia;
@@ -15,14 +16,17 @@ public abstract class Veiculo implements Preco{
 	protected List<Rota> rota;
 	protected double preco_ipva;
 	protected double preco_seguro;
-	protected int id;
-	protected HashMap<String, Integer> combustiveisSelecionados;
+	static private int veiculosId = 0; 
+	private int id;
+	protected HashMap<String, Double> combustiveisSelecionados = new HashMap<String, Double>();
 
 	Veiculo(double km_medio, double capacidade, double valor_venda) {
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
 		this.capacidade = capacidade;
 		precoIpva(valor_venda);
+		this.id = veiculosId;
+		veiculosId ++;
 	}
 
 	private void precoIpva(double valor_venda){
@@ -38,11 +42,41 @@ public abstract class Veiculo implements Preco{
 	 * @param capacidade a capacidade maxima permitida no tanque do veiculo
 	 * @param tanque     a quantidade de combustivel inserida no veiculo
 	 */
-	protected void verificar_quantidade_de_litros_inseridos_no_tanque(double capacidade, double tanque) {
-		if (tanque <= capacidade)
-			this.tanque = tanque;
-		else
-			this.tanque = capacidade;
+	protected double quantidadeDeLitrosInseridasNoTanque(double valorASerEnchido) {
+		if (this.tanque + valorASerEnchido >= this.capacidade){
+			double valorASerEnchidoFinal = this.capacidade - this.tanque;
+			this.tanque = valorASerEnchidoFinal + this.tanque;
+			return valorASerEnchidoFinal;
+		} else {
+			this.tanque = valorASerEnchido;
+			return valorASerEnchido;
+		}
+	}
+
+	protected void armazenarCombustivelPreenchido(Combustivel tipoCombustivel, double quantidadePreenchida){
+		if(this.combustiveisSelecionados.get(tipoCombustivel.name()) == null){
+			this.combustiveisSelecionados.put(tipoCombustivel.name(), quantidadePreenchida);
+		} else {
+			this.combustiveisSelecionados.put(tipoCombustivel.name(), this.combustiveisSelecionados.get(tipoCombustivel.name()) + quantidadePreenchida);
+		}
+	}
+
+	protected double calcularPrecoGastoComCombustivel(){
+		double precoGastoEmCombustivel = 0;
+		for (Entry<String, Double> pair :this.combustiveisSelecionados.entrySet()) {
+			switch(pair.getKey()) {
+				case "Diesel":
+					precoGastoEmCombustivel = precoGastoEmCombustivel + pair.getValue() * Combustivel.Diesel.getPrecoDoLitro();
+				  break;
+				case "Gasolina":
+					precoGastoEmCombustivel = precoGastoEmCombustivel + pair.getValue() * Combustivel.Gasolina.getPrecoDoLitro();
+				  break;
+				case "Etanol":
+					precoGastoEmCombustivel = precoGastoEmCombustivel + pair.getValue() * Combustivel.Etanol.getPrecoDoLitro();
+				  break;
+			}
+		}
+		return precoGastoEmCombustivel;
 	}
 	
 	public double autonomia() {

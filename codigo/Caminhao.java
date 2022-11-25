@@ -1,12 +1,12 @@
 package codigo;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class Caminhao extends Veiculo {
-	private static int caminhaoID = 0;
 	Caminhao(double km_medio, double tanque, double valor_venda) {
 		super(km_medio, tanque, valor_venda);
 		precoSeguro(valor_venda);
-		this.id = caminhaoID;
-		caminhaoID++;
 	}
 
 	private void precoSeguro(double valor_venda){
@@ -22,14 +22,14 @@ public class Caminhao extends Veiculo {
 		if(tipoCombustivel != Combustivel.Diesel){
 			throw new Exception("Apenas permitido diesel");
 		}
-		verificar_quantidade_de_litros_inseridos_no_tanque(litros, this.capacidade);
+		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
+		armazenarCombustivelPreenchido(tipoCombustivel,quantidadePreenchida);
 		System.out.println("O tanque está cheio");
-		
 	}
 
 	@Override
 	public double custos() {
-		// TODO Auto-generated method stub
-		return 0;
+		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
+		return precoGastoComCombustivel;
 	}
 }
