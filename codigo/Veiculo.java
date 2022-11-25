@@ -1,6 +1,7 @@
 package codigo;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Veiculo implements Preco{
@@ -15,6 +16,7 @@ public abstract class Veiculo implements Preco{
 	protected double preco_ipva;
 	protected double preco_seguro;
 	protected int id;
+	protected HashMap<String, Integer> combustiveisSelecionados;
 
 	Veiculo(double km_medio, double capacidade, double valor_venda) {
 		this.km_medio = km_medio;
@@ -97,7 +99,7 @@ public abstract class Veiculo implements Preco{
     public String relatorio(){
         StringBuilder relat = new StringBuilder("Veiculo\n" + getClass().getName());
         relat.append("=====================\n");
-        relat.append("Id veículo:"+ this.id);
+        relat.append("Id por veículo:"+ this.id);
 		relat.append("=====================\n");
 		relat.append("Autonomia:"+this.autonomia);
 		relat.append("=====================\n");

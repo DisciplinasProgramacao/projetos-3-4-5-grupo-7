@@ -15,15 +15,8 @@ public class Rota {
 		return this.data;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
-	}
-
 	public double getDistancia_total() {
 		return this.distancia_total;
 	}
 
-	public void setDistancia_total(double distancia_total) {
-		this.distancia_total = distancia_total;
-	}
 }

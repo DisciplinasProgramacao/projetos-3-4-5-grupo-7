@@ -12,8 +12,28 @@ public class Frota {
         return totalKm/quantidadeDeRotas;
     }
 
-    public void addVeiculo(Veiculo veiculo){
-        listaVeiculos.add(veiculo);
+    public void addVeiculo(String kmMedio,String capacidade, String valorVenda, String veiculoSelecionado ){
+        switch (veiculoSelecionado) {
+            case "1":
+                Carro carroAdicionado = new Carro(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                this.listaVeiculos.add(carroAdicionado);
+                break;
+            case "2":
+                Caminhao caminhaoAdicionado = new Caminhao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                this.listaVeiculos.add(caminhaoAdicionado);
+                break;
+            case "3":
+                Van vanAdicionado = new Van(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                this.listaVeiculos.add(vanAdicionado);
+                break;
+            case "4":
+                Furgao furgaoAdicionado = new Furgao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                this.listaVeiculos.add(furgaoAdicionado);
+                break;
+            default:
+                System.out.print("Nao existe essa opcao");
+                break;
+        }
     }
 
     public String addVeiculos(String arquivo){
@@ -56,6 +76,10 @@ public class Frota {
             stringParaArquivoFinal.append(listaVeiculos.get(i).getClass().getSimpleName()).append(listaVeiculos.get(i).getKm_medio()).append(",").append(listaVeiculos.get(i).getValor_venda()).append(",").append(listaVeiculos.get(i).preco_seguro).append(";");
         }
         System.out.print(stringParaArquivoFinal);
+    }
+
+    public List<Veiculo> getListaVeiculos() {
+        return this.listaVeiculos;
     }
 
     public double[] ordem_decrescente_por_custo(){

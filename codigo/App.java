@@ -19,7 +19,7 @@ public class App {
 			System.out.println("Digite opção");
 			opcao = Integer.parseInt(teclado.nextLine());
 
-			if (opcao == 0) { // termina o sistema se a opÃ§Ã£o for 0
+			if (opcao == 0) { // termina o sistema se a opção for 0
 				System.out.println("Obrigado e volte sempre!");
 				teclado.close();
 				return;
@@ -35,12 +35,26 @@ public class App {
 					break;
 				case 3:
 					System.out.println("Adicionar novo veiculo");
-
+					System.out.println("km_medio");
+					String kmMedio = teclado.nextLine();
+					System.out.println("capacidade");
+					String capacidade = teclado.nextLine();
+					System.out.println("valor venda");
+					String valorVenda = teclado.nextLine();
+					System.out.println("Carro 1, Caminhao 2, Van 3, Furgao 4");
+					String veiculoSelecionado = teclado.nextLine();
+					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado);
+					break;
+				case 4:
+					System.out.print("Veiculos: \n\n");
+					frota.getListaVeiculos().stream().forEach(veiculo -> {
+						System.out.print(veiculo);
+					});
 					break;
 				case 0:
 					return;
 			}
-		} while (opcao != 0); // repete-se atÃ© que o usuÃ¡rio queira sair.
+		} while (opcao != 0); // repete-se até que o usuário queira sair.
 		teclado.close();
 	}
 }
