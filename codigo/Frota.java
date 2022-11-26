@@ -82,6 +82,23 @@ public class Frota {
         return this.listaVeiculos;
     }
 
+    public Veiculo pegarVeiculoEspecifico(String idVeiculo){
+        return this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    }
+
+    public Carro pegarCarroEspecifico(String idVeiculo){
+        return (Carro) this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    }
+    public Caminhao pegarCaminhaoEspecifico(String idVeiculo){
+        return (Caminhao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    }
+    public Van pegarVanEspecifico(String idVeiculo){
+        return (Van)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    }
+    public Furgao pegarFurgaoEspecifico(String idVeiculo){
+        return (Furgao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    }
+    
     public double[] ordem_decrescente_por_custo(){
         double[] sort = this.listaVeiculos.stream().mapToDouble( veiculoKm -> veiculoKm.custos()).sorted().toArray();
         return sort;

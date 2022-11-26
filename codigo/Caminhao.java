@@ -22,6 +22,7 @@ public class Caminhao extends Veiculo {
 		if(tipoCombustivel != Combustivel.Diesel){
 			throw new Exception("Apenas permitido diesel");
 		}
+		colocarCombustivelAtual(tipoCombustivel);
 		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
 		armazenarCombustivelPreenchido(tipoCombustivel,quantidadePreenchida);
 		System.out.println("O tanque está cheio");

@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map.Entry;
 
 public abstract class Veiculo implements Preco{
-	protected double autonomia;
+	protected double autonomia = 0;
 	protected double km_medio;
-	protected double tanque;
+	protected double tanque = 0;
+	protected Combustivel combustivelAtual;
 	protected double valor_venda;
 	protected double capacidade;
 	protected double gastos_com_combustivel;
@@ -78,17 +79,35 @@ public abstract class Veiculo implements Preco{
 		}
 		return precoGastoEmCombustivel;
 	}
+
+	protected void colocarCombustivelAtual(Combustivel tipoCombustivel){
+		if(this.tanque < this.capacidade){
+			this.combustivelAtual = tipoCombustivel;
+		}
+	}
+
+	public int getId(){
+		return this.id;
+	}
 	
 	public double autonomia() {
 		double autonomia = this.tanque * km_medio;
 		return autonomia;
 	}
 
-	public void adicionarNovaRota(double distancia_total){
-		Date dataDoMomento = new Date();
-		Rota rotaParaSerAdicionada = new Rota(dataDoMomento, distancia_total);
-		this.rota.add(rotaParaSerAdicionada);
-		System.out.print("Rota adicionada!");
+	public boolean adicionarNovaRota(double distancia_total) throws Exception{
+		if(this.combustivelAtual == null){
+			return false;
+		}
+		// if(distancia_total/this.combustivelAtual.getPrecoDoLitro() > this.tanque){
+		// 	return false;
+		// }
+		// Date dataDoMomento = new Date();
+		// Rota rotaParaSerAdicionada = new Rota(dataDoMomento, distancia_total);
+		// this.rota.add(rotaParaSerAdicionada);
+		// this.tanque = this.tanque - distancia_total/this.combustivelAtual.getPrecoDoLitro();
+		// System.out.print("Rota adicionada!");
+		return true;
 	}
 
 	public boolean rota_valida(double rota) {

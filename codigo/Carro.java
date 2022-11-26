@@ -14,6 +14,7 @@ public class Carro extends Veiculo {
 		if(tipoCombustivel == Combustivel.Diesel){
 			throw new Exception("Apenas permitido gasolina ou etanol");
 		}
+		colocarCombustivelAtual(tipoCombustivel);
 		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
 		armazenarCombustivelPreenchido(tipoCombustivel,quantidadePreenchida);
 		System.out.println("O tanque está cheio");
