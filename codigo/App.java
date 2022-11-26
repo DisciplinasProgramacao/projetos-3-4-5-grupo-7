@@ -71,9 +71,11 @@ public class App {
 					String capacidade = teclado.nextLine();
 					System.out.println("valor venda");
 					String valorVenda = teclado.nextLine();
+					System.out.println("Placa do veiculo");
+					String placaVeiculo = teclado.nextLine();
 					System.out.println("Carro 1, Caminhao 2, Van 3, Furgao 4");
 					String veiculoSelecionado = teclado.nextLine();
-					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado);
+					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placaVeiculo);
 					break;
 				case 4:
 					System.out.print("Adicionar rota em veiculo: \n\n");
@@ -96,8 +98,9 @@ public class App {
 						if(combustivelParaAbastecer != null){
 							var veiculoSelecionadoParaAbstecer = retornaVeiculoEspecificado(veiculoParaEncher.getClass().getSimpleName(), idVeiculo, frota);
 							veiculoSelecionadoParaAbstecer.adicionar_combustivel(combustivelParaAbastecer, Double.parseDouble(quantidadeDeCombustivelASerColocada));
+							System.out.print("Repita o processo para adicionar combustivel");
 						} else {
-							System.out.print("Repita de novo o processo com o numero correto de combustivel");
+							throw new Exception("Repita de novo o processo com o numero correto de combustivel");
 						}
 						
 					};

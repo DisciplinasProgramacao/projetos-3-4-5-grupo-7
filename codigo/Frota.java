@@ -2,6 +2,7 @@ package codigo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Frota {
     private List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
@@ -12,22 +13,22 @@ public class Frota {
         return totalKm/quantidadeDeRotas;
     }
 
-    public void addVeiculo(String kmMedio,String capacidade, String valorVenda, String veiculoSelecionado ){
+    public void addVeiculo(String kmMedio,String capacidade, String valorVenda, String veiculoSelecionado, String placa ) throws NumberFormatException, Exception{
         switch (veiculoSelecionado) {
             case "1":
-                Carro carroAdicionado = new Carro(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                Carro carroAdicionado = new Carro(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
                 this.listaVeiculos.add(carroAdicionado);
                 break;
             case "2":
-                Caminhao caminhaoAdicionado = new Caminhao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                Caminhao caminhaoAdicionado = new Caminhao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
                 this.listaVeiculos.add(caminhaoAdicionado);
                 break;
             case "3":
-                Van vanAdicionado = new Van(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                Van vanAdicionado = new Van(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
                 this.listaVeiculos.add(vanAdicionado);
                 break;
             case "4":
-                Furgao furgaoAdicionado = new Furgao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda));
+                Furgao furgaoAdicionado = new Furgao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
                 this.listaVeiculos.add(furgaoAdicionado);
                 break;
             default:
@@ -36,7 +37,7 @@ public class Frota {
         }
     }
 
-    public String addVeiculos(String arquivo){
+    public String addVeiculos(String arquivo) throws NumberFormatException, Exception{
         CsvReader newVeiculos = new CsvReader(arquivo);
         if(newVeiculos.returnArrayNumbers().size() == 0){
             return "nao possui veiculos";
@@ -46,22 +47,22 @@ public class Frota {
             String[] veiculosInfo = veiculo.split(",");
             switch (veiculosInfo[0]) {
                 case "Caminhao":
-                    Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
+                    Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
                     listaVeiculos.add(caminhaoAux);
                     System.out.print(caminhaoAux);
                     break;
                 case "Carro":
-                    Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
+                    Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
                     listaVeiculos.add(carroAux);
                     System.out.print(carroAux);
                     break;
                 case "Van":
-                    Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
+                    Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
                     listaVeiculos.add(vanAux);
                     System.out.print(vanAux);
                     break;
                 case "Furgao":
-                    Furgao forgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]));
+                    Furgao forgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
                     listaVeiculos.add(forgaoAux);
                     System.out.print(forgaoAux);
                     break;
@@ -82,21 +83,25 @@ public class Frota {
         return this.listaVeiculos;
     }
 
-    public Veiculo pegarVeiculoEspecifico(String idVeiculo){
-        return this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+    public Veiculo pegarVeiculoEspecifico(String idVeiculo) throws Exception{
+        List<Veiculo> listaAuxParaVerSeExisteVeiculo = this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca() == idVeiculo).toList();
+        if(listaAuxParaVerSeExisteVeiculo.size() == 0){
+            throw new Exception("Nao existe esse id");
+        }
+        return listaAuxParaVerSeExisteVeiculo.get(0);  
     }
 
     public Carro pegarCarroEspecifico(String idVeiculo){
-        return (Carro) this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+        return (Carro) this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca() == idVeiculo).toList().get(0);
     }
     public Caminhao pegarCaminhaoEspecifico(String idVeiculo){
-        return (Caminhao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+        return (Caminhao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca() == idVeiculo).toList().get(0);
     }
     public Van pegarVanEspecifico(String idVeiculo){
-        return (Van)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+        return (Van)this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca() == idVeiculo).toList().get(0);
     }
     public Furgao pegarFurgaoEspecifico(String idVeiculo){
-        return (Furgao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getId() == Integer.parseInt(idVeiculo)).toList().get(0);
+        return (Furgao)this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca() == idVeiculo).toList().get(0);
     }
     
     public double[] ordem_decrescente_por_custo(){

@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class Caminhao extends Veiculo {
-	Caminhao(double km_medio, double tanque, double valor_venda) {
-		super(km_medio, tanque, valor_venda);
+	Caminhao(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
+		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
 	}
 

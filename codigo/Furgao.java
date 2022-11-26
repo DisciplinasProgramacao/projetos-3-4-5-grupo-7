@@ -1,8 +1,8 @@
 package codigo;
 
 public class Furgao extends Veiculo{
-	Furgao(double km_medio, double tanque, double valor_venda) {
-		super(km_medio, tanque, valor_venda);
+	Furgao(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
+		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
 	}
 	private void precoSeguro(double valor_venda){
@@ -14,6 +14,7 @@ public class Furgao extends Veiculo{
 		if(tipoCombustivel == Combustivel.Gasolina){
 			throw new Exception("Apenas permitido gasolina");
 		}
+		colocarCombustivelAtual(tipoCombustivel);
 		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
 		armazenarCombustivelPreenchido(tipoCombustivel,quantidadePreenchida);
 		System.out.println("O tanque está cheio");

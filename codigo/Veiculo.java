@@ -1,9 +1,13 @@
 package codigo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class Veiculo implements Preco{
 	protected double autonomia = 0;
@@ -17,17 +21,30 @@ public abstract class Veiculo implements Preco{
 	protected List<Rota> rota;
 	protected double preco_ipva;
 	protected double preco_seguro;
-	static private int veiculosId = 0; 
-	private int id;
+	static private List<String> veiculosPlaca = new LinkedList<String>(); 
+	private String placa;
 	protected HashMap<String, Double> combustiveisSelecionados = new HashMap<String, Double>();
 
-	Veiculo(double km_medio, double capacidade, double valor_venda) {
+	Veiculo(double km_medio, double capacidade, double valor_venda, String placa) throws Exception {
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
 		this.capacidade = capacidade;
 		precoIpva(valor_venda);
-		this.id = veiculosId;
-		veiculosId ++;
+		verificarPlaca(placa);
+		this.placa = placa;
+		veiculosPlaca.add(placa);
+	}
+
+	private void verificarPlaca(String placa) throws Exception{
+		String regex = "^[A-Z]{3}\\-[0-9]{4}";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(placa);
+		if(veiculosPlaca.contains(placa)){
+			throw new Exception("Ja existe veiculo com essa placa");
+		}
+		if(m.matches() == false){
+			throw new Exception("Formato da placa incorreto deve ser EX: ABC-1234");
+		}
 	}
 
 	private void precoIpva(double valor_venda){
@@ -86,8 +103,8 @@ public abstract class Veiculo implements Preco{
 		}
 	}
 
-	public int getId(){
-		return this.id;
+	public String getPlaca(){
+		return this.placa;
 	}
 	
 	public double autonomia() {
@@ -145,14 +162,10 @@ public abstract class Veiculo implements Preco{
 		return this.rota.size();
 	}
 
-	/**
-     * Classe de relatório do pedido. (a ser melhorado)
-     * @return String com detalhamento do pedido. 
-     */
     public String relatorio(){
         StringBuilder relat = new StringBuilder("Veiculo\n" + getClass().getName());
         relat.append("=====================\n");
-        relat.append("Id por veículo:"+ this.id);
+        relat.append("Placa veiculo:"+ this.placa);
 		relat.append("=====================\n");
 		relat.append("Autonomia:"+this.autonomia);
 		relat.append("=====================\n");
