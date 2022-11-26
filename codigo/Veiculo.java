@@ -18,7 +18,7 @@ public abstract class Veiculo implements Preco{
 	protected double capacidade;
 	protected double gastos_com_combustivel;
 	protected Combustivel tipoCombustivel;
-	protected List<Rota> rota;
+	protected List<Rota> rota = new ArrayList<Rota>();
 	protected double preco_ipva;
 	protected double preco_seguro;
 	static private List<String> veiculosPlaca = new LinkedList<String>(); 
@@ -116,14 +116,16 @@ public abstract class Veiculo implements Preco{
 		if(this.combustivelAtual == null){
 			return false;
 		}
-		// if(distancia_total/this.combustivelAtual.getPrecoDoLitro() > this.tanque){
-		// 	return false;
-		// }
-		// Date dataDoMomento = new Date();
-		// Rota rotaParaSerAdicionada = new Rota(dataDoMomento, distancia_total);
-		// this.rota.add(rotaParaSerAdicionada);
-		// this.tanque = this.tanque - distancia_total/this.combustivelAtual.getPrecoDoLitro();
-		// System.out.print("Rota adicionada!");
+		if(distancia_total/this.combustivelAtual.getPrecoDoLitro() > this.tanque){
+			return false;
+		}
+		Date dataDoMomento = new Date();
+		Rota rotaParaSerAdicionada = new Rota(dataDoMomento, distancia_total);
+		this.rota.add(rotaParaSerAdicionada);
+		this.tanque = this.tanque - distancia_total/this.combustivelAtual.getQuilometragemPorLitro();
+		System.out.println("Rota adicionada!");
+		System.out.println(this.tanque);
+
 		return true;
 	}
 

@@ -9,6 +9,18 @@ public class Furgao extends Veiculo{
 		this.preco_seguro = valor_venda * 0.03;
 	}
 
+	private int precoAlinhamento(){
+		double quantidadeTotalPercorrida = this.rota.stream().mapToDouble(rota -> rota.distancia_total).sum();
+		int gastoAlinhamento = ((int) Math.floor(quantidadeTotalPercorrida / 10000)) * 120;
+		return gastoAlinhamento;
+	}
+
+	private int precoVistoria(){
+		double quantidadeTotalPercorrida = this.rota.stream().mapToDouble(rota -> rota.distancia_total).sum();
+		int gastoAlinhamento = ((int) Math.floor(quantidadeTotalPercorrida / 10000)) * 500;
+		return gastoAlinhamento;
+	}
+
 	@Override
 	public void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception {
 		if(tipoCombustivel == Combustivel.Gasolina){
@@ -23,7 +35,8 @@ public class Furgao extends Veiculo{
 	@Override
 	public double custos() {
 		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
-		return 0;
+		double precoTotal = precoGastoComCombustivel + this.preco_seguro + this.preco_ipva + precoAlinhamento() + precoVistoria();
+		return precoTotal;
 	}
 	
 }

@@ -5,8 +5,15 @@ public class Carro extends Veiculo {
 		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
 	}
+
 	private void precoSeguro(double valor_venda){
 		this.preco_seguro = valor_venda * 0.04;
+	}
+
+	private int precoAlinhamento(){
+		double quantidadeTotalPercorrida = this.rota.stream().mapToDouble(rota -> rota.distancia_total).sum();
+		int gastoAlinhamento = ((int) Math.floor(quantidadeTotalPercorrida / 10000)) * 80;
+		return gastoAlinhamento;
 	}
 
 	@Override
@@ -22,6 +29,7 @@ public class Carro extends Veiculo {
 	@Override
 	public double custos() {
 		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
-		return 0;
+		double precoTotal = precoGastoComCombustivel + this.preco_seguro + this.preco_ipva + precoAlinhamento();
+		return precoTotal;
 	}
 }

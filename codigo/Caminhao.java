@@ -13,6 +13,18 @@ public class Caminhao extends Veiculo {
 		this.preco_seguro = valor_venda * 0.02 + 2000;
 	}
 
+	private int precoVistoria(){
+		double quantidadeTotalPercorrida = this.rota.stream().mapToDouble(rota -> rota.distancia_total).sum();
+		int gastoAlinhamento = ((int) Math.floor(quantidadeTotalPercorrida / 30000)) * 1000;
+		return gastoAlinhamento;
+	}
+
+	private int precoManutencao(){
+		double quantidadeTotalPercorrida = this.rota.stream().mapToDouble(rota -> rota.distancia_total).sum();
+		int gastoAlinhamento = ((int) Math.floor(quantidadeTotalPercorrida / 20000)) * 1000;
+		return gastoAlinhamento;
+	}
+
 	public int vistoria() {
 		return 0;
 	}
@@ -31,6 +43,7 @@ public class Caminhao extends Veiculo {
 	@Override
 	public double custos() {
 		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
-		return precoGastoComCombustivel;
+		double precoTotal = precoGastoComCombustivel + this.preco_seguro + this.preco_ipva + precoManutencao() + precoVistoria();
+		return precoTotal;
 	}
 }

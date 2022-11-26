@@ -37,7 +37,6 @@ public class App {
 		Scanner teclado = new Scanner(System.in); // para ler o teclado
 		int opcao = 1;// escolha da operação pelo usuário
 		Frota frota = new Frota();
-
 		do {
 			System.out.println("Frota de carros");
 			System.out.println("1 - Carregar um conjunto de veículos de um arquivo");
@@ -45,6 +44,7 @@ public class App {
 			System.out.println("3 - Incluir Novo veículo");
 			System.out.println("4 - Incluir Nova rota");
 			System.out.println("5 - Localizar veiculo da Frota");
+			System.out.println("6 - Custos totais de cada veiculo da frota");
 			System.out.println("0 - Sair");
 			System.out.println("Digite opção");
 			opcao = Integer.parseInt(teclado.nextLine());
@@ -82,11 +82,11 @@ public class App {
 					frota.getListaVeiculos().stream().forEach(veiculo -> {
 						System.out.print(veiculo);
 					});
-					System.out.print("Inserir id de veiculo \n\n");
-					String idVeiculo = teclado.nextLine();
+					System.out.print("Inserir placa de veiculo \n\n");
+					String placa = teclado.nextLine();
 					System.out.print("Quilometragem de rota de veiculo");
 					String quilometragemRota = teclado.nextLine();
-					Veiculo veiculoParaEncher = frota.pegarVeiculoEspecifico(idVeiculo);
+					Veiculo veiculoParaEncher = frota.pegarVeiculoEspecifico(placa);
 					if(veiculoParaEncher.adicionarNovaRota(Double.parseDouble(quilometragemRota)) == false){
 						System.out.print("Veiculo sem combustivel");
 						System.out.print("Encher combustivel \n");
@@ -96,7 +96,7 @@ public class App {
 						String quantidadeDeCombustivelASerColocada = teclado.nextLine();
 						Combustivel combustivelParaAbastecer = retornaCombustivel(combustivelEscolhido);
 						if(combustivelParaAbastecer != null){
-							var veiculoSelecionadoParaAbstecer = retornaVeiculoEspecificado(veiculoParaEncher.getClass().getSimpleName(), idVeiculo, frota);
+							var veiculoSelecionadoParaAbstecer = retornaVeiculoEspecificado(veiculoParaEncher.getClass().getSimpleName(), placa, frota);
 							veiculoSelecionadoParaAbstecer.adicionar_combustivel(combustivelParaAbastecer, Double.parseDouble(quantidadeDeCombustivelASerColocada));
 							System.out.print("Repita o processo para adicionar combustivel");
 						} else {
@@ -110,6 +110,9 @@ public class App {
 					frota.getListaVeiculos().stream().forEach(veiculo -> {
 						System.out.print(veiculo);
 					});
+					break;
+				case 6:
+					frota.getListaDeVeiculosComPreco();
 					break;
 				case 0:
 					return;
