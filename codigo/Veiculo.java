@@ -16,7 +16,6 @@ public abstract class Veiculo implements Preco{
 	protected Combustivel combustivelAtual;
 	protected double valor_venda;
 	protected double capacidade;
-	protected double gastos_com_combustivel;
 	protected Combustivel tipoCombustivel;
 	protected List<Rota> rota = new ArrayList<Rota>();
 	protected double preco_ipva;
@@ -103,6 +102,21 @@ public abstract class Veiculo implements Preco{
 		}
 	}
 
+	public double getTanque(){
+		return this.tanque;
+	}
+
+	public double getCapacidade(){
+		return this.capacidade;
+	}
+
+	public Combustivel getTipoCombustivel(){
+		return this.tipoCombustivel;
+	}
+
+	public HashMap<String, Double> getCombustiveisSelecionados(){
+		return this.combustiveisSelecionados;
+	}
 	public String getPlaca(){
 		return this.placa;
 	}
@@ -134,10 +148,6 @@ public abstract class Veiculo implements Preco{
 			return true;
 		}
 		return false;
-	}
-	
-	public double somar_custos_veiculo(){
-		return preco_ipva + preco_seguro + this.gastos_com_combustivel;
 	}
 
 	public double IPVA() {

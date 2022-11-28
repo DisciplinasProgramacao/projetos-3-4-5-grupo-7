@@ -19,4 +19,9 @@ public class Rota {
 		return this.distancia_total;
 	}
 
+	@Override
+	public String toString(){
+		return this.data.toString() + "|" + this.distancia_total;
+	}
+
 }

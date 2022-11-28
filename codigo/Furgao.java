@@ -4,6 +4,7 @@ public class Furgao extends Veiculo{
 	Furgao(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
 		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
+		this.tipoCombustivel = Combustivel.Gasolina;
 	}
 	private void precoSeguro(double valor_venda){
 		this.preco_seguro = valor_venda * 0.03;

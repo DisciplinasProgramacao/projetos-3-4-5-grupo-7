@@ -7,6 +7,10 @@ import java.util.Optional;
 public class Frota {
     private List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
 
+    public List<Veiculo> getListaVeiculos() {
+        return this.listaVeiculos;
+    }
+
     public double calcular_Media(){
         double totalKm = this.listaVeiculos.stream().mapToDouble( veiculoKm -> veiculoKm.getRota().stream().mapToDouble(rota -> rota.distancia_total).sum()).sum();
         int quantidadeDeRotas = this.listaVeiculos.stream().mapToInt(totalRotaPorVeiculo -> totalRotaPorVeiculo.getRota().size()).sum();
@@ -71,17 +75,12 @@ public class Frota {
         return "veiculos adicionados";
     }
 
-    public void saveVeiculos(String arquivo){
-        StringBuilder stringParaArquivoFinal = new StringBuilder();
-        for (int i = 0; i < this.listaVeiculos.size(); i++) {
-            stringParaArquivoFinal.append(listaVeiculos.get(i).getClass().getSimpleName()).append(listaVeiculos.get(i).getKm_medio()).append(",").append(listaVeiculos.get(i).getValor_venda()).append(",").append(listaVeiculos.get(i).preco_seguro).append(";");
-        }
-        System.out.print(stringParaArquivoFinal);
+    public void saveVeiculos(String arquivo) throws Exception{
+        CsvWriter escreverFile = new CsvWriter(arquivo, listaVeiculos);
+        escreverFile.salvarInformacoesListaVeiculos();
+        
     }
 
-    public List<Veiculo> getListaVeiculos() {
-        return this.listaVeiculos;
-    }
 
     public Veiculo pegarVeiculoEspecifico(String placa) throws Exception{
         System.out.print(placa);
