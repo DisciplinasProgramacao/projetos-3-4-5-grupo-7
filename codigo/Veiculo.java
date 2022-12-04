@@ -1,5 +1,7 @@
 package codigo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +30,6 @@ public abstract class Veiculo implements Preco{
 		this.km_medio = km_medio;
 		this.valor_venda = valor_venda;
 		this.capacidade = capacidade;
-		precoIpva(valor_venda);
 		verificarPlaca(placa);
 		this.placa = placa;
 		veiculosPlaca.add(placa);
@@ -44,10 +45,6 @@ public abstract class Veiculo implements Preco{
 		if(m.matches() == false){
 			throw new Exception("Formato da placa incorreto deve ser EX: ABC-1234");
 		}
-	}
-
-	private void precoIpva(double valor_venda){
-		this.preco_ipva = valor_venda * 0.04;
 	}
 
 	/**
@@ -141,6 +138,37 @@ public abstract class Veiculo implements Preco{
 		System.out.println(this.tanque);
 
 		return true;
+	}
+
+	/// set para escrever a partir de Arquivo
+	public void setCombustiveisSelecionados(String tipoCombustivel, String quantidadePreenchida){
+		this.combustiveisSelecionados.put(tipoCombustivel, Double.parseDouble(quantidadePreenchida));
+	}
+
+	public void setRota(String data, String autonomia) throws ParseException{
+		SimpleDateFormat dataformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.print(data);
+		Date dataFinal = dataformat.parse(data);
+		Rota novaRota = new Rota(dataFinal,Double.parseDouble(autonomia));
+		this.rota.add(novaRota);
+	}
+
+	public void setTanque(String tanque){
+		this.tanque = Double.parseDouble(tanque);
+	}
+
+	public void setCombustivelTipo(String tanque){
+		switch(tanque){
+			case "Diesel":
+				this.tipoCombustivel = Combustivel.Diesel;
+			break;
+			case "Gasolina":
+				this.tipoCombustivel = Combustivel.Gasolina;
+			break;
+			case "Etanol":
+				this.tipoCombustivel = Combustivel.Etanol;
+			break;
+		}
 	}
 
 	public boolean rota_valida(double rota) {

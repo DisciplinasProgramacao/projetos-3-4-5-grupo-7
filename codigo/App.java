@@ -57,7 +57,7 @@ public class App {
 			switch (opcao) {
 				case 1:
 					System.out.println("Colocar caminho relativo Arquivo");
-					System.out.println(frota.addVeiculos("codigo/adicionar.csv"));
+					frota.addVeiculosCompletos("codigo/salvar.csv");
 					break;
 				case 2:
 					System.out.println("Salvar veículos");

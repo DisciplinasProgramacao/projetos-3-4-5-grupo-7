@@ -41,38 +41,27 @@ public class Frota {
         }
     }
 
-    public String addVeiculos(String arquivo) throws NumberFormatException, Exception{
+    public void addVeiculos(String arquivo) throws NumberFormatException, Exception{
+       CsvReader newVeiculos = new CsvReader(arquivo);
+       List<Veiculo> listVeiculos = newVeiculos.addVeiculos();
+       for (Veiculo veiculo : listVeiculos) {
+        listaVeiculos.add(veiculo);
+       }
+       System.out.print("Veiculos adicionados");
+    }
+
+    public void addVeiculosCompletos(String arquivo) throws NumberFormatException, Exception{
         CsvReader newVeiculos = new CsvReader(arquivo);
-        if(newVeiculos.returnArrayNumbers().size() == 0){
-            return "nao possui veiculos";
+        List<Veiculo> listVeiculos = newVeiculos.lerVeiculoArquivoCompleto();
+        for (Veiculo veiculo : listVeiculos) {
+         listaVeiculos.add(veiculo);
         }
-        for (String veiculo : newVeiculos.returnArrayNumbers()) {
-            System.out.print(veiculo);
-            String[] veiculosInfo = veiculo.split(",");
-            switch (veiculosInfo[0]) {
-                case "Caminhao":
-                    Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
-                    listaVeiculos.add(caminhaoAux);
-                    System.out.print(caminhaoAux);
-                    break;
-                case "Carro":
-                    Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
-                    listaVeiculos.add(carroAux);
-                    System.out.print(carroAux);
-                    break;
-                case "Van":
-                    Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
-                    listaVeiculos.add(vanAux);
-                    System.out.print(vanAux);
-                    break;
-                case "Furgao":
-                    Furgao forgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
-                    listaVeiculos.add(forgaoAux);
-                    System.out.print(forgaoAux);
-                    break;
-            }
-        }
-        return "veiculos adicionados";
+        System.out.print("Veiculos adicionados");
+     }
+
+    public void lerVeiculosTransformarEmRespectivo(String arquivo){
+        CsvReader csvReader = new CsvReader(arquivo);
+
     }
 
     public void saveVeiculos(String arquivo) throws Exception{
@@ -83,7 +72,6 @@ public class Frota {
 
 
     public Veiculo pegarVeiculoEspecifico(String placa) throws Exception{
-        System.out.print(placa);
         List<Veiculo> listaAuxParaVerSeExisteVeiculo = this.listaVeiculos.stream().filter(veiculo -> veiculo.getPlaca().equals(placa)).toList();
         if(listaAuxParaVerSeExisteVeiculo.size() == 0){
             throw new Exception("Nao existe essa placa");

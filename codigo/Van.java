@@ -5,7 +5,12 @@ public class Van extends Veiculo{
 	Van(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
 		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
+		precoIpva(valor_venda);
 		this.tipoCombustivel = Combustivel.Gasolina;
+	}
+
+	private void precoIpva(double valor_venda){
+		this.preco_ipva = valor_venda * 0.03;
 	}
 
 	private int precoAlinhamento(){

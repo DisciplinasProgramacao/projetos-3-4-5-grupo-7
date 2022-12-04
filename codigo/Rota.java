@@ -1,5 +1,6 @@
 package codigo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Rota {
@@ -21,7 +22,14 @@ public class Rota {
 
 	@Override
 	public String toString(){
-		return this.data.toString() + "|" + this.distancia_total;
+		return ValorData() + "|" + this.distancia_total;
+	}
+
+	private String ValorData(){
+		Date dataNormal = this.data;
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dataFinalAux = dt.format(dataNormal);
+		return dataFinalAux;
 	}
 
 }

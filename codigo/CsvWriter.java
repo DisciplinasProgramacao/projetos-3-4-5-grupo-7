@@ -25,34 +25,34 @@ public class CsvWriter {
         StringBuilder stringParaArquivoFinal = new StringBuilder();
         for (int i = 0; i < this.listaVeiculo.size(); i++) {
             if(i == this.listaVeiculo.size() -1){
-                stringParaArquivoFinal.append(this.listaVeiculo.get(i).getClass().getSimpleName())
+                stringParaArquivoFinal.append(this.listaVeiculo.get(i).getClass().getSimpleName()).append(",")
                 .append(this.listaVeiculo.get(i).getKm_medio()).append(",")
+                .append(this.listaVeiculo.get(i).getCapacidade()).append(",")
                 .append(this.listaVeiculo.get(i).getValor_venda()).append(",")
                 .append(this.listaVeiculo.get(i).getPlaca()).append(",")
                 .append(this.listaVeiculo.get(i).getTanque()).append(",")
-                .append(this.listaVeiculo.get(i).getCapacidade()).append(",")
                 .append(this.listaVeiculo.get(i).getTipoCombustivel().name()).append(",");
                 this.listaVeiculo.get(i).getRota().stream().forEach(rota ->{
                    stringParaArquivoFinal.append(rota.toString()); 
                 });
                 stringParaArquivoFinal.append(",");
                 for (Entry<String, Double> pair :this.listaVeiculo.get(i).getCombustiveisSelecionados().entrySet()) {
-                    stringParaArquivoFinal.append(pair.getKey() + "|" + pair.getValue());
+                    stringParaArquivoFinal.append(pair.getKey() + "/" + pair.getValue());
                 }
             } else {
                 stringParaArquivoFinal.append(this.listaVeiculo.get(i).getClass().getSimpleName()).append(",")
                 .append(this.listaVeiculo.get(i).getKm_medio()).append(",")
+                .append(this.listaVeiculo.get(i).getCapacidade()).append(",")
                 .append(this.listaVeiculo.get(i).getValor_venda()).append(",")
                 .append(this.listaVeiculo.get(i).getPlaca()).append(",")
                 .append(this.listaVeiculo.get(i).getTanque()).append(",")
-                .append(this.listaVeiculo.get(i).getCapacidade()).append(",")
                 .append(this.listaVeiculo.get(i).getTipoCombustivel().name()).append(",");
                 this.listaVeiculo.get(i).getRota().stream().forEach(rota ->{
                    stringParaArquivoFinal.append(rota.toString()); 
                 });
                 stringParaArquivoFinal.append(",");
                 for (Entry<String, Double> pair :this.listaVeiculo.get(i).getCombustiveisSelecionados().entrySet()) {
-                    stringParaArquivoFinal.append(pair.getKey() + "|" + pair.getValue());
+                    stringParaArquivoFinal.append(pair.getKey() + "/" + pair.getValue());
                 }
                 stringParaArquivoFinal.append(";");
             }
@@ -62,7 +62,7 @@ public class CsvWriter {
             FileWriter myWriter = new FileWriter(this.caminho);
             myWriter.write(stringParaArquivoFinal.toString());
             myWriter.close();
-            System.out.println("Testo escrito no arquivo.");
+            System.out.println("Texto escrito no arquivo.");
         } catch (IOException e) {
             throw new Exception(e);
         }

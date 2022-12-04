@@ -7,7 +7,12 @@ public class Caminhao extends Veiculo {
 	Caminhao(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
 		super(km_medio, tanque, valor_venda, placa);
 		precoSeguro(valor_venda);
+		precoIpva(valor_venda);
 		this.tipoCombustivel = Combustivel.Diesel;
+	}
+
+	private void precoIpva(double valor_venda){
+		this.preco_ipva = valor_venda * 0.01;
 	}
 
 	private void precoSeguro(double valor_venda){
@@ -33,7 +38,7 @@ public class Caminhao extends Veiculo {
 	@Override
 	public void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception {
 		if(tipoCombustivel != Combustivel.Diesel){
-			throw new Exception("Apenas permitido diesel");
+			throw new IllegalAccessError("Apenas permitido diesel");
 		}
 		colocarCombustivelAtual(tipoCombustivel);
 		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
