@@ -37,6 +37,7 @@ public class App {
 		Scanner teclado = new Scanner(System.in); // para ler o teclado
 		int opcao = 1;// escolha da operação pelo usuário
 		Frota frota = new Frota();
+		frota.addVeiculosCompletos("codigo/salvar.csv");
 		do {
 			System.out.println("Frota de carros");
 			System.out.println("1 - Carregar um conjunto de veículos de um arquivo");
@@ -57,10 +58,7 @@ public class App {
 			switch (opcao) {
 				case 1:
 					System.out.println("Colocar caminho relativo Arquivo");
-					frota.addVeiculosCompletos("codigo/salvar.csv");
-					break;
-				case 2:
-					System.out.println("Salvar veículos");
+					frota.addVeiculos("codigo/adicionar.csv");
 					frota.saveVeiculos("codigo/salvar.csv");
 					break;
 				case 3:
@@ -76,6 +74,7 @@ public class App {
 					System.out.println("Carro 1, Caminhao 2, Van 3, Furgao 4");
 					String veiculoSelecionado = teclado.nextLine();
 					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placaVeiculo);
+					frota.saveVeiculos("codigo/salvar.csv");
 					break;
 				case 4:
 					System.out.print("Adicionar rota em veiculo: \n\n");
@@ -87,6 +86,7 @@ public class App {
 					System.out.print("Quilometragem de rota de veiculo");
 					String quilometragemRota = teclado.nextLine();
 					Veiculo veiculoParaEncher = frota.pegarVeiculoEspecifico(placa);
+					System.out.print(veiculoParaEncher.tanque);
 					if(veiculoParaEncher.adicionarNovaRota(Double.parseDouble(quilometragemRota)) == false){
 						System.out.print("Veiculo sem combustivel");
 						System.out.print("Encher combustivel \n");
@@ -104,6 +104,7 @@ public class App {
 						}
 						
 					};
+					frota.saveVeiculos("codigo/salvar.csv");
 					break;
 				case 5:
 					System.out.print("Veiculos: \n\n");

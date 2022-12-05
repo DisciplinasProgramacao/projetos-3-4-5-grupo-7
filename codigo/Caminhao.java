@@ -1,8 +1,5 @@
 package codigo;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 public class Caminhao extends Veiculo {
 	Caminhao(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
 		super(km_medio, tanque, valor_venda, placa);

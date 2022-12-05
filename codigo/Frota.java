@@ -2,7 +2,6 @@ package codigo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Frota {
     private List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
@@ -57,11 +56,6 @@ public class Frota {
          listaVeiculos.add(veiculo);
         }
         System.out.print("Veiculos adicionados");
-     }
-
-    public void lerVeiculosTransformarEmRespectivo(String arquivo){
-        CsvReader csvReader = new CsvReader(arquivo);
-
     }
 
     public void saveVeiculos(String arquivo) throws Exception{

@@ -22,7 +22,7 @@ public class Rota {
 
 	@Override
 	public String toString(){
-		return ValorData() + "|" + this.distancia_total;
+		return ValorData() + "/" + this.distancia_total;
 	}
 
 	private String ValorData(){

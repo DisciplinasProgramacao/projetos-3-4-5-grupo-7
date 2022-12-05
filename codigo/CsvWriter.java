@@ -32,13 +32,27 @@ public class CsvWriter {
                 .append(this.listaVeiculo.get(i).getPlaca()).append(",")
                 .append(this.listaVeiculo.get(i).getTanque()).append(",")
                 .append(this.listaVeiculo.get(i).getTipoCombustivel().name()).append(",");
+                if(this.listaVeiculo.get(i).getRota().size() == 0){
+                    stringParaArquivoFinal.append(", ");
+                }
                 this.listaVeiculo.get(i).getRota().stream().forEach(rota ->{
                    stringParaArquivoFinal.append(rota.toString()); 
                 });
                 stringParaArquivoFinal.append(",");
+                if(this.listaVeiculo.get(i).getCombustiveisSelecionados().size() == 0){
+                    stringParaArquivoFinal.append(" ");
+                }
+                int contador = 0;
                 for (Entry<String, Double> pair :this.listaVeiculo.get(i).getCombustiveisSelecionados().entrySet()) {
                     stringParaArquivoFinal.append(pair.getKey() + "/" + pair.getValue());
                 }
+                stringParaArquivoFinal.append(",");
+                if(this.listaVeiculo.get(i).getCombustivelAtual() != null){
+                    stringParaArquivoFinal.append(this.listaVeiculo.get(i).getCombustivelAtual().name());
+                } else {
+                    stringParaArquivoFinal.append("");
+                }
+
             } else {
                 stringParaArquivoFinal.append(this.listaVeiculo.get(i).getClass().getSimpleName()).append(",")
                 .append(this.listaVeiculo.get(i).getKm_medio()).append(",")
@@ -47,17 +61,29 @@ public class CsvWriter {
                 .append(this.listaVeiculo.get(i).getPlaca()).append(",")
                 .append(this.listaVeiculo.get(i).getTanque()).append(",")
                 .append(this.listaVeiculo.get(i).getTipoCombustivel().name()).append(",");
+                if(this.listaVeiculo.get(i).getRota().size() == 0){
+                    stringParaArquivoFinal.append(", ");
+                }
                 this.listaVeiculo.get(i).getRota().stream().forEach(rota ->{
                    stringParaArquivoFinal.append(rota.toString()); 
                 });
                 stringParaArquivoFinal.append(",");
+                if(this.listaVeiculo.get(i).getCombustiveisSelecionados().size() == 0){
+                    stringParaArquivoFinal.append(" ");
+                }
+                System.out.print(this.listaVeiculo.get(i).getCombustiveisSelecionados().size());
                 for (Entry<String, Double> pair :this.listaVeiculo.get(i).getCombustiveisSelecionados().entrySet()) {
                     stringParaArquivoFinal.append(pair.getKey() + "/" + pair.getValue());
+                }
+                stringParaArquivoFinal.append(",");
+                if(this.listaVeiculo.get(i).getCombustivelAtual() != null){
+                    stringParaArquivoFinal.append(this.listaVeiculo.get(i).getCombustivelAtual().name());
+                } else {
+                    stringParaArquivoFinal.append("");
                 }
                 stringParaArquivoFinal.append(";");
             }
         }
-        System.out.print(stringParaArquivoFinal);
         try {
             FileWriter myWriter = new FileWriter(this.caminho);
             myWriter.write(stringParaArquivoFinal.toString());

@@ -127,7 +127,7 @@ public abstract class Veiculo implements Preco{
 		if(this.combustivelAtual == null){
 			return false;
 		}
-		if(distancia_total/this.combustivelAtual.getPrecoDoLitro() > this.tanque){
+		if(distancia_total/this.combustivelAtual.getQuilometragemPorLitro() > this.tanque){
 			return false;
 		}
 		Date dataDoMomento = new Date();
@@ -135,7 +135,6 @@ public abstract class Veiculo implements Preco{
 		this.rota.add(rotaParaSerAdicionada);
 		this.tanque = this.tanque - distancia_total/this.combustivelAtual.getQuilometragemPorLitro();
 		System.out.println("Rota adicionada!");
-		System.out.println(this.tanque);
 
 		return true;
 	}
@@ -147,7 +146,6 @@ public abstract class Veiculo implements Preco{
 
 	public void setRota(String data, String autonomia) throws ParseException{
 		SimpleDateFormat dataformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.print(data);
 		Date dataFinal = dataformat.parse(data);
 		Rota novaRota = new Rota(dataFinal,Double.parseDouble(autonomia));
 		this.rota.add(novaRota);
@@ -196,6 +194,11 @@ public abstract class Veiculo implements Preco{
 
 	public double getValor_venda() {
         return this.valor_venda;
+    }
+
+	
+	public Combustivel getCombustivelAtual() {
+        return this.combustivelAtual;
     }
 
 	public int contar_quant_rotas_por_veiculo(){
