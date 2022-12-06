@@ -155,6 +155,20 @@ public abstract class Veiculo implements Preco{
 		this.tanque = Double.parseDouble(tanque);
 	}
 
+	public void setCombustivelAtual(String combustivel ){
+		switch(combustivel){
+			case "Diesel":
+				this.combustivelAtual = Combustivel.Diesel;
+			break;
+			case "Gasolina":
+				this.combustivelAtual = Combustivel.Gasolina;
+			break;
+			case "Etanol":
+				this.combustivelAtual = Combustivel.Etanol;
+			break;
+		}
+	}
+
 	public void setCombustivelTipo(String tanque){
 		switch(tanque){
 			case "Diesel":
