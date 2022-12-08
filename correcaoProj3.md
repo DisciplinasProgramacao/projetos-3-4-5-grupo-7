@@ -1,17 +1,19 @@
 # Projeto 3 - Frota fase 1
 
-## Nota: 1 (há apenas um esqueleto de código)
+## Nota: 4 (há apenas um esqueleto de código)
 
 ## Comentários
 	- readme não foi preenchido (até hoje, 03/12, inclusive). Atenção para os requisitos e documentação
 	- não compilou por erros diversos (falta de construtor, falta de import, atribuição incorreta...)
 	- correção somente por inspeção de código dos requisitos
 	- nenhum dos requisitos principais foi implementado 😱 , nem mesmos básicos como valor de IPVA. 
+	- NOTA REVISADA EM 08/12 (diagrama e código básico)
 	
-### Modelagem: 0/2 pontos. 
+### Modelagem: 2/2 pontos. 
 	- não localizei o diagrama
 	
-### Implementação dos requisitos de acordo com a modelagem: 0/6 pontos. 
+### Implementação dos requisitos de acordo com a modelagem: 2/6 pontos.
+	- **Nenhum requisito completo; nota atribuída pelos esqueletos das classes.**
 	- Adicionar rota (com autonomia)  0/2 
 	- IPVA  0/1
 	- Seguro 0/1
