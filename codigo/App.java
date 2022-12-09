@@ -41,11 +41,10 @@ public class App {
 		do {
 			System.out.println("Frota de carros");
 			System.out.println("1 - Carregar um conjunto de veículos de um arquivo");
-			System.out.println("2 - Salvar um conjunto de veículos de um arquivo");
-			System.out.println("3 - Incluir Novo veículo");
-			System.out.println("4 - Incluir Nova rota");
-			System.out.println("5 - Localizar veiculo da Frota");
-			System.out.println("6 - Custos totais de cada veiculo da frota");
+			System.out.println("2 - Incluir Novo veículo");
+			System.out.println("3 - Incluir Nova rota");
+			System.out.println("4 - Localizar veiculo da Frota");
+			System.out.println("5 - Custos totais de cada veiculo da frota");
 			System.out.println("0 - Sair");
 			System.out.println("Digite opção");
 			opcao = Integer.parseInt(teclado.nextLine());

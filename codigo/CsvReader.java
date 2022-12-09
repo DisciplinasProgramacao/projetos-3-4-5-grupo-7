@@ -19,7 +19,7 @@ public class CsvReader{
         this.caminhoRelativoArquivoCsv = caminhoRelativo;
     }
 
-    private List<String> returnArrayNumbers() throws IOException, FileNotFoundException{
+    public List<String> returnArrayNumbers() throws IOException, FileNotFoundException{
         String arquivoCSV = this.caminhoRelativoArquivoCsv;
 		BufferedReader br = null;
 		String linha = "";
