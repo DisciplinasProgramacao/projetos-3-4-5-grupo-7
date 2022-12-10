@@ -33,7 +33,7 @@ public class Carro extends Veiculo {
 		System.out.println("O tanque está cheio");
 	}
 	@Override
-	public double custos() {
+	public double somar_custo_veiculo() {
 		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
 		double precoTotal = precoGastoComCombustivel + this.preco_seguro + this.preco_ipva + precoAlinhamento();
 		return precoTotal;
