@@ -17,32 +17,14 @@ public class Frota {
     }
 
     public void addVeiculo(String kmMedio,String capacidade, String valorVenda, String veiculoSelecionado, String placa ) throws NumberFormatException, Exception{
-        switch (veiculoSelecionado) {
-            case "1":
-                Carro carroAdicionado = new Carro(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
-                this.listaVeiculos.add(carroAdicionado);
-                break;
-            case "2":
-                Caminhao caminhaoAdicionado = new Caminhao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
-                this.listaVeiculos.add(caminhaoAdicionado);
-                break;
-            case "3":
-                Van vanAdicionado = new Van(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
-                this.listaVeiculos.add(vanAdicionado);
-                break;
-            case "4":
-                Furgao furgaoAdicionado = new Furgao(Double.parseDouble(kmMedio),Double.parseDouble(capacidade),Double.parseDouble(valorVenda), placa);
-                this.listaVeiculos.add(furgaoAdicionado);
-                break;
-            default:
-                System.out.print("Nao existe essa opcao");
-                break;
-        }
+        SuperFactorty superFactorty = new SuperFactorty();
+        Veiculo veiculoAdd = superFactorty.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placa);
+        this.listaVeiculos.add(veiculoAdd);
     }
 
     public void addVeiculos(String arquivo) throws NumberFormatException, Exception{
-       CsvReader newVeiculos = new CsvReader(arquivo);
-       List<Veiculo> listVeiculos = newVeiculos.addVeiculos();
+       SuperFactorty superFactorty = new SuperFactorty();
+       List<Veiculo> listVeiculos = superFactorty.addVeiculos(arquivo);
        for (Veiculo veiculo : listVeiculos) {
         listaVeiculos.add(veiculo);
        }
@@ -50,8 +32,8 @@ public class Frota {
     }
 
     public void addVeiculosCompletos(String arquivo) throws NumberFormatException, Exception{
-        CsvReader newVeiculos = new CsvReader(arquivo);
-        List<Veiculo> listVeiculos = newVeiculos.lerVeiculoArquivoCompleto();
+        SuperFactorty superFactorty = new SuperFactorty();
+        List<Veiculo> listVeiculos = superFactorty.addVeiculos(arquivo);
         for (Veiculo veiculo : listVeiculos) {
          listaVeiculos.add(veiculo);
         }

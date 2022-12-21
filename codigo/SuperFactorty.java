@@ -29,7 +29,7 @@ public class SuperFactorty {
         return null;
     }
 
-    public void addVeiculos(String arquivo) throws NumberFormatException, Exception{
+    public List<Veiculo> addVeiculos(String arquivo) throws NumberFormatException, Exception{
         CsvReader newVeiculos = new CsvReader(arquivo);
         List<Veiculo> listVeiculos = new ArrayList<Veiculo>();
         List<String> arrayVeiculos = newVeiculos.returnArrayNumbers();
@@ -59,5 +59,6 @@ public class SuperFactorty {
             }
         }
         System.out.print("Veiculos adicionados");
+        return listVeiculos;
     }
 }

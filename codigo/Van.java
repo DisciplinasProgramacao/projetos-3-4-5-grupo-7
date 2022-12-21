@@ -1,5 +1,9 @@
 package codigo;
 
+/**
+ * Classe que representa o veiculo Van, classe filha 
+ * da classe veículo
+ */
 public class Van extends Veiculo{
 
 	Van(double km_medio, double tanque, double valor_venda, String placa) throws Exception {
