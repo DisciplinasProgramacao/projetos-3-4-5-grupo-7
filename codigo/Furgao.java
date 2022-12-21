@@ -44,7 +44,7 @@ public class Furgao extends Veiculo{
 		
 	}
 	@Override
-	public double custos() {
+	public double somar_custo_veiculo() {
 		double precoGastoComCombustivel = calcularPrecoGastoComCombustivel();
 		double precoTotal = precoGastoComCombustivel + this.preco_seguro + this.preco_ipva + precoAlinhamento() + precoVistoria();
 		return precoTotal;

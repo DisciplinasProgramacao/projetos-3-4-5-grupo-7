@@ -237,7 +237,7 @@ public abstract class Veiculo implements Preco{
         return this.relatorio();
     }
 
-	public abstract double custos ();
+	public abstract double somar_custo_veiculo();
 	public abstract void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception; 
 
 }
