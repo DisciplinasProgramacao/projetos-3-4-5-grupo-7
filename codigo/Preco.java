@@ -1,5 +1,5 @@
 package codigo;
 
 public interface Preco {
-	public double custos();
+	public double somar_custo_veiculo();
 }

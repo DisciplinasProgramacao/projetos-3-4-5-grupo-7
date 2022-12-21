@@ -69,14 +69,14 @@ public class Frota {
     }
     
     public double[] ordem_decrescente_por_custo(){
-        double[] sort = this.listaVeiculos.stream().mapToDouble( veiculoKm -> veiculoKm.custos()).sorted().toArray();
+        double[] sort = this.listaVeiculos.stream().mapToDouble( veiculoKm -> veiculoKm.somar_custo_veiculo()).sorted().toArray();
         return sort;
     }
 
     public void getListaDeVeiculosComPreco() {
         this.listaVeiculos.stream().forEach(veiculo ->{
             StringBuilder relatorioVaiculoMaisPrecoFinal = new StringBuilder();
-            relatorioVaiculoMaisPrecoFinal.append(veiculo.toString()).append("\n Custos totais: \n").append(veiculo.custos());
+            relatorioVaiculoMaisPrecoFinal.append(veiculo.toString()).append("\n Custos totais: \n").append(veiculo.somar_custo_veiculo());
             System.out.print(relatorioVaiculoMaisPrecoFinal.toString());
         });;
     }
