@@ -1,11 +1,31 @@
 package codigo;
 
 public class CaminhaoFactory {
+    /**
+     * Método da factory que vai criar o caminhao com base em informações passadas
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Caminhao
+     * @throws Exception
+     */
     public Caminhao createCaminhao(Double kmMedio,Double capacidade, Double valorVenda, String placa ) throws Exception{
         Caminhao caminhaoAdicionado = new Caminhao(kmMedio, capacidade, valorVenda, placa);
         return caminhaoAdicionado;
     }
 
+    /**
+     * Método da factory que vai criar o caminhao com base em uma string
+     * usado para pegar informações de um arquivo e transformar em um 
+     * caminhão
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Caminhao
+     * @throws Exception
+     */
     public Caminhao createCaminhaoString(String info) throws NumberFormatException, Exception{
         String[] veiculosInfo = info.split(",");
         Caminhao caminhaoAux = new Caminhao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);

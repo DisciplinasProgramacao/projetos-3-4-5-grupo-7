@@ -33,11 +33,22 @@ public class App {
 				return null;
 		}
 	}
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args){
 		Scanner teclado = new Scanner(System.in); // para ler o teclado
 		int opcao = 1;// escolha da operação pelo usuário
 		Frota frota = new Frota();
-		frota.addVeiculosCompletos("codigo/salvar.csv");
+		try{
+			try {
+				frota.addVeiculosCompletos("codigo/salvar.csv");
+			} catch (NumberFormatException e) {
+				System.out.print(e);
+			} catch (Exception e) {
+				System.out.print(e);
+			}
+		} catch(Error e){
+			System.out.print(e);
+		}
+		
 		do {
 			System.out.println("Frota de carros");
 			System.out.println("1 - Carregar um conjunto de veículos de um arquivo");
@@ -57,8 +68,18 @@ public class App {
 			switch (opcao) {
 				case 1:
 					System.out.println("Colocar caminho relativo Arquivo");
-					/* gerando excessao */ frota.addVeiculos("codigo/adicionar.csv");
-					/* gerando excessao */ frota.saveVeiculos("codigo/salvar.csv");
+					try {
+						frota.addVeiculos("codigo/adicionar.csv");
+					} catch (NumberFormatException e3) {
+						System.out.print(e3);
+					} catch (Exception e3) {
+						System.out.print(e3);
+					}
+					try {
+						frota.saveVeiculos("codigo/salvar.csv");
+					} catch (Exception e2) {
+						System.out.print(e2);
+					}
 					break;
 				case 2: 
 					System.out.println("Adicionar novo veiculo");
@@ -72,8 +93,18 @@ public class App {
 					String placaVeiculo = teclado.nextLine();
 					System.out.println("Carro 1, Caminhao 2, Van 3, Furgao 4");
 					String veiculoSelecionado = teclado.nextLine();
-					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placaVeiculo);
-					frota.saveVeiculos("codigo/salvar.csv");
+					try {
+						frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placaVeiculo);
+					} catch (NumberFormatException e) {
+						System.out.print(e);
+					} catch (Exception e) {
+						System.out.print(e);
+					}
+					try {
+						frota.saveVeiculos("codigo/salvar.csv");
+					} catch (Exception e) {
+						System.out.print(e);
+					}
 					break;
 				case 3:
 					System.out.print("Adicionar rota em veiculo: \n\n");
@@ -84,26 +115,41 @@ public class App {
 					String placa = teclado.nextLine();
 					System.out.print("Quilometragem de rota de veiculo");
 					String quilometragemRota = teclado.nextLine();
-					Veiculo veiculoParaEncher = frota.pegarVeiculoEspecifico(placa);
-					System.out.print(veiculoParaEncher.tanque);
-					if(veiculoParaEncher.adicionarNovaRota(Double.parseDouble(quilometragemRota)) == false){
-						System.out.print("Veiculo sem combustivel");
-						System.out.print("Encher combustivel \n");
-						System.out.print("1 Diesel, 2 Gasolina, 3 Etanol");
-						String combustivelEscolhido = teclado.nextLine();
-						System.out.print("Quantidade de combustivel que sera colocada");
-						String quantidadeDeCombustivelASerColocada = teclado.nextLine();
-						Combustivel combustivelParaAbastecer = retornaCombustivel(combustivelEscolhido);
-						if(combustivelParaAbastecer != null){
-							var veiculoSelecionadoParaAbstecer = retornaVeiculoEspecificado(veiculoParaEncher.getClass().getSimpleName(), placa, frota);
-							veiculoSelecionadoParaAbstecer.adicionar_combustivel(combustivelParaAbastecer, Double.parseDouble(quantidadeDeCombustivelASerColocada));
-							System.out.print("Repita o processo para adicionar combustivel");
-						} else {
-							throw new Exception("Repita de novo o processo com o numero correto de combustivel");
-						}
-						
-					};
-					frota.saveVeiculos("codigo/salvar.csv");
+					Veiculo veiculoParaEncher;
+					try {
+						veiculoParaEncher = frota.pegarVeiculoEspecifico(placa);
+						try {
+							if(veiculoParaEncher.adicionarNovaRota(Double.parseDouble(quilometragemRota)) == false){
+								System.out.print("Veiculo sem combustivel");
+								System.out.print("Encher combustivel \n");
+								System.out.print("1 Diesel, 2 Gasolina, 3 Etanol");
+								String combustivelEscolhido = teclado.nextLine();
+								System.out.print("Quantidade de combustivel que sera colocada");
+								String quantidadeDeCombustivelASerColocada = teclado.nextLine();
+								Combustivel combustivelParaAbastecer = retornaCombustivel(combustivelEscolhido);
+								if(combustivelParaAbastecer != null){
+									var veiculoSelecionadoParaAbstecer = retornaVeiculoEspecificado(veiculoParaEncher.getClass().getSimpleName(), placa, frota);
+									veiculoSelecionadoParaAbstecer.adicionar_combustivel(combustivelParaAbastecer, Double.parseDouble(quantidadeDeCombustivelASerColocada));
+									System.out.print("Repita o processo para adicionar combustivel");
+								} else {
+									throw new Exception("Repita de novo o processo com o numero correto de combustivel");
+								}
+								
+							}
+						} catch (NumberFormatException e) {
+							System.out.print(e);
+						} catch (Exception e) {
+							System.out.print(e);
+						};
+					} catch (Exception e1) {
+						System.out.print(e1);
+					}
+					
+					try {
+						frota.saveVeiculos("codigo/salvar.csv");
+					} catch (Exception e) {
+						System.out.print(e);
+					}
 					break;
 				case 4:
 					System.out.print("Veiculos: \n\n");

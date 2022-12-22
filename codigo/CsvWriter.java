@@ -7,6 +7,9 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.List;
 import java.util.Map.Entry;
 
+/**
+ * Classe que escreve as informações em um arquivo csv como se fosse um banco de dados
+ */
 public class CsvWriter {
     List<Veiculo> listaVeiculo;
     Veiculo veiculo;
@@ -20,7 +23,11 @@ public class CsvWriter {
         this.caminho = caminho;
         this.veiculo = veiculo;
     }
-
+    /**
+     * Método que transforma todas as informações do veículo em string separados por , e _ para separar as informações
+     * e utilizando o símbolo ; para separar os veículos
+     * @throws Exception
+     */
     public void salvarInformacoesListaVeiculos() throws Exception {
         StringBuilder stringParaArquivoFinal = new StringBuilder();
         for (int i = 0; i < this.listaVeiculo.size(); i++) {
