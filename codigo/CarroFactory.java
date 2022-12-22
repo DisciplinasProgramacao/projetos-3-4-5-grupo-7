@@ -3,11 +3,31 @@ package codigo;
 import java.text.ParseException;
 
 public class CarroFactory {
+    /**
+     * Método da factory que vai criar o Carro com base em informações passadas
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Carro
+     * @throws Exception
+     */
     public Carro createCarro(Double kmMedio,Double capacidade, Double valorVenda, String placa ) throws Exception{
         Carro carroAdicionado = new Carro(kmMedio, capacidade, valorVenda, placa);
         return carroAdicionado;
     }
 
+    /**
+     * Método da factory que vai criar o Carro com base em uma string
+     * usado para pegar informações de um arquivo e transformar em um 
+     * carro
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Carro
+     * @throws Exception
+     */
     public Carro createCarroString(String info) throws NumberFormatException, Exception{
         String[] veiculosInfo = info.split(",");
         Carro carroAux = new Carro(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);

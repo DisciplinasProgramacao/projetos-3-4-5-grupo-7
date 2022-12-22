@@ -1,11 +1,31 @@
 package codigo;
 
 public class FurgaoFactory {
+    /**
+     * Método da factory que vai criar o furgao com base em informações passadas
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Furgao
+     * @throws Exception
+     */
     public Furgao createFurgao(Double kmMedio,Double capacidade, Double valorVenda, String placa ) throws Exception{
         Furgao furgaoAdicionado = new Furgao(kmMedio, capacidade, valorVenda, placa);
         return furgaoAdicionado;
     }
 
+    /**
+     * Método da factory que vai criar o furgao com base em uma string
+     * usado para pegar informações de um arquivo e transformar em um 
+     * Furgao
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Furgao
+     * @throws Exception
+     */
     public Furgao createFurgaoString(String info) throws NumberFormatException, Exception{
         String[] veiculosInfo = info.split(",");
         Furgao furgaoAux = new Furgao(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);

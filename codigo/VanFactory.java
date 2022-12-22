@@ -1,11 +1,31 @@
 package codigo;
 
 public class VanFactory {
+    /**
+     * Método da factory que vai criar a van com base em informações passadas
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Van
+     * @throws Exception
+     */
     public Van createVan(Double kmMedio,Double capacidade, Double valorVenda, String placa ) throws Exception{
         Van vanAdicionado = new Van(kmMedio, capacidade, valorVenda, placa);
         return vanAdicionado;
     }
 
+    /**
+     * Método da factory que vai criar a van com base em uma string
+     * usado para pegar informações de um arquivo e transformar em uma
+     * van
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param placa
+     * @return Van
+     * @throws Exception
+     */
     public Van createVanString(String veiculo) throws NumberFormatException, Exception{
         String[] veiculosInfo = veiculo.split(",");
         Van vanAux = new Van(Double.parseDouble(veiculosInfo[1]), Double.parseDouble(veiculosInfo[2]), Double.parseDouble(veiculosInfo[3]), veiculosInfo[4]);
