@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuperFactorty {
+    /**
+     * Método que adiciona um veículo, com base no número que foi selecionado
+     * @param kmMedio
+     * @param capacidade
+     * @param valorVenda
+     * @param veiculoSelecionado
+     * @param placa
+     * @return Veiculo
+     * @throws NumberFormatException
+     * @throws Exception
+     */
     public Veiculo addVeiculo(String kmMedio,String capacidade, String valorVenda, String veiculoSelecionado, String placa ) throws NumberFormatException, Exception{
         switch (veiculoSelecionado) {
             case "1":
@@ -29,6 +40,14 @@ public class SuperFactorty {
         return null;
     }
 
+    /**
+     * Método que pega as informações de um arquivo e com base no arquivo, lê todos os veículos e cria uma lista
+     * de veículos que estão no arquivo
+     * @param arquivo
+     * @return List<Veiculo>
+     * @throws NumberFormatException
+     * @throws Exception
+     */
     public List<Veiculo> addVeiculos(String arquivo) throws NumberFormatException, Exception{
         CsvReader newVeiculos = new CsvReader(arquivo);
         List<Veiculo> listVeiculos = new ArrayList<Veiculo>();
