@@ -55,7 +55,7 @@ public class Carro extends Veiculo {
 	@Override
 	public void adicionar_combustivel(Combustivel tipoCombustivel, double litros) throws Exception {
 		if(tipoCombustivel == Combustivel.Diesel){
-			throw new Exception("Apenas permitido gasolina ou etanol");
+			throw new Exception("Só é permitido o abastecimento com gasolina ou etanol");
 		}
 		colocarCombustivelAtual(tipoCombustivel);
 		double quantidadePreenchida = quantidadeDeLitrosInseridasNoTanque(litros);
