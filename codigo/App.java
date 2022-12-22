@@ -57,10 +57,10 @@ public class App {
 			switch (opcao) {
 				case 1:
 					System.out.println("Colocar caminho relativo Arquivo");
-					frota.addVeiculos("codigo/adicionar.csv");
-					frota.saveVeiculos("codigo/salvar.csv");
+					/* gerando excessao */ frota.addVeiculos("codigo/adicionar.csv");
+					/* gerando excessao */ frota.saveVeiculos("codigo/salvar.csv");
 					break;
-				case 3:
+				case 2: 
 					System.out.println("Adicionar novo veiculo");
 					System.out.println("km_medio");
 					String kmMedio = teclado.nextLine();
@@ -75,7 +75,7 @@ public class App {
 					frota.addVeiculo(kmMedio, capacidade, valorVenda, veiculoSelecionado, placaVeiculo);
 					frota.saveVeiculos("codigo/salvar.csv");
 					break;
-				case 4:
+				case 3:
 					System.out.print("Adicionar rota em veiculo: \n\n");
 					frota.getListaVeiculos().stream().forEach(veiculo -> {
 						System.out.print(veiculo);
@@ -105,13 +105,13 @@ public class App {
 					};
 					frota.saveVeiculos("codigo/salvar.csv");
 					break;
-				case 5:
+				case 4:
 					System.out.print("Veiculos: \n\n");
 					frota.getListaVeiculos().stream().forEach(veiculo -> {
 						System.out.print(veiculo);
 					});
 					break;
-				case 6:
+				case 5:
 					frota.getListaDeVeiculosComPreco();
 					break;
 				case 0:
