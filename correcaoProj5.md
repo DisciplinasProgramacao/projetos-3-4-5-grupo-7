@@ -21,17 +21,17 @@
 	-- modularidade: reader/writer não deveriam ter classe base/interface comum?
 	
 
-### Robustez: 2/4
+### Robustez: 2/4 (+2 - revisão de nota)
 	- menu principal: 0,5/1 (exceção em formato de placa mata o sistema)
 	- regras inválidas do projeto: 1,5/3 (exceção não tratada de combustível mata o sistema) 
 	
-### Padrão de projeto implementado: 2/5
+### Padrão de projeto implementado: 2/5 (+1,5 - não faz sentido criar uma nova fábrica a cada chamada. A Fábrica deve existir junto com o sistema)
 	- Fábricas individuais ok
 	- Não entendi direito o que faz "SuperFactory" (sem documentação/interface)
 	- Fábricas não chamadas no principal 
 	
 	
-### Documentação e apresentação:  5 pontos
+### Documentação e apresentação:  5 pontos (pontos de documentação adicionados)
 	- continua sem documentação
 	- nota individual de acordo com a documentação e participação do aluno nas apresentações realizadas ao longo do Projeto
 
